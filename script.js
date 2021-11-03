@@ -11,6 +11,8 @@ let secretNum = randomNum(min, max);
 
 let score = Number(document.querySelector(".score").textContent);
 
+let highscore = Number(document.querySelector(".highscore").textContent);
+
 document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value);
 
@@ -19,9 +21,14 @@ document.querySelector(".check").addEventListener("click", function () {
   } else {
     if (guess === secretNum) {
       document.querySelector(".number").textContent = secretNum;
-      document.querySelector(".number").style.width = "30rem";
       document.querySelector(".message").textContent = "🎉 You got it!";
+      document.querySelector(".number").style.width = "30rem";
       document.body.style.background = "#60b347";
+
+      if (score > highscore) {
+        highscore = score;
+        document.querySelector(".highscore").textContent = highscore;
+      }
     }
 
     if (score > 0) {
@@ -41,10 +48,11 @@ document.querySelector(".check").addEventListener("click", function () {
 });
 
 document.querySelector(".again").addEventListener("click", function () {
+  score = 20;
   secretNum = randomNum(min, max);
   document.querySelector(".number").textContent = "?";
   document.querySelector(".message").textContent = "Start guessing...";
-  document.querySelector(".score").textContent = 20;
+  document.querySelector(".score").textContent = score;
   document.querySelector(".guess").value = "";
   document.body.style.background = "#222";
   document.querySelector(".number").style.width = "15rem";
