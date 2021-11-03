@@ -13,15 +13,19 @@ let score = Number(document.querySelector(".score").textContent);
 
 let highscore = Number(document.querySelector(".highscore").textContent);
 
+const displayMessage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
+
 document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value);
 
   if (!guess) {
-    document.querySelector(".message").textContent = "⛔ Not a Number!";
+    displayMessage("⛔ Not a Number!");
   } else {
     if (guess === secretNum) {
       document.querySelector(".number").textContent = secretNum;
-      document.querySelector(".message").textContent = "🎉 You got it!";
+      displayMessage("🎉 You got it!");
       document.querySelector(".number").style.width = "30rem";
       document.body.style.background = "#60b347";
 
@@ -33,16 +37,16 @@ document.querySelector(".check").addEventListener("click", function () {
 
     if (score > 0) {
       if (guess > secretNum) {
-        document.querySelector(".message").textContent = "📈 Too High!";
+        displayMessage("📈 Too High!");
         score--;
         document.querySelector(".score").textContent = score;
       } else if (guess < secretNum) {
-        document.querySelector(".message").textContent = "📉 Too Low!";
+        displayMessage("📉 Too Low!");
         score--;
         document.querySelector(".score").textContent = score;
       }
     } else {
-      document.querySelector(".message").textContent = "👊 You lost the game!";
+      displayMessage("👊 You lost the game!");
     }
   }
 });
@@ -51,7 +55,7 @@ document.querySelector(".again").addEventListener("click", function () {
   score = 20;
   secretNum = randomNum(min, max);
   document.querySelector(".number").textContent = "?";
-  document.querySelector(".message").textContent = "Start guessing...";
+  displayMessage("Start guessing...");
   document.querySelector(".score").textContent = score;
   document.querySelector(".guess").value = "";
   document.body.style.background = "#222";
