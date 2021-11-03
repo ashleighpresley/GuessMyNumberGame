@@ -39,3 +39,13 @@ document.querySelector(".check").addEventListener("click", function () {
     }
   }
 });
+
+document.querySelector(".again").addEventListener("click", function () {
+  secretNum = randomNum(min, max);
+  document.querySelector(".number").textContent = "?";
+  document.querySelector(".message").textContent = "Start guessing...";
+  document.querySelector(".score").textContent = 20;
+  document.querySelector(".guess").value = "";
+  document.body.style.background = "#222";
+  document.querySelector(".number").style.width = "15rem";
+});
